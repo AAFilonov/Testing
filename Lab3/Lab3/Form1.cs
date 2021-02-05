@@ -45,21 +45,22 @@ namespace Lab3
         public class Rect
         {
 
-            public double x1=0;
-            public double y1 = 0;
+            public double lx=0;
+            public double ly = 0;
 
-            public double x2 = 0;
-            public double y2 = 0;
+            public double rx = 0;
+            public double ry = 0;
 
         }
         private bool AreRectCross(Rect A, Rect B)
         {
-            var v1 = A.y1 < B.y2;
-            var v2 = A.y2 > B.y1;
-            var v3 = A.x2 < B.x1;
-            var v4 = A.x1 > B.x2;
-            return ( v1|| v2|| v3 ||v4);
-         
+            if (A.lx > B.rx || B.lx > A.rx)
+                return false;
+            // If one rectangle is above other 
+            if (A.ry < B.ly || B.ry < A.ly)
+                return false;
+
+            return true;
         }
 
         private void buttonTask1_Click(object sender, EventArgs e)
@@ -91,15 +92,20 @@ namespace Lab3
             try
             {
                 Rect A = new Rect(); Rect B = new Rect();
-                A.x1 = Convert.ToDouble(textBoxTesk3R1X1.Text);
-                A.y1 = Convert.ToDouble(textBoxTesk3R1Y1.Text);
-                A.x2 = Convert.ToDouble(textBoxTesk3R1X2.Text);
-                A.y2 = Convert.ToDouble(textBoxTesk3R1Y2.Text);
-                B.x1 = Convert.ToDouble(textBoxTesk3R2X1.Text);
-                B.y1 = Convert.ToDouble(textBoxTesk3R2Y1.Text);
-                B.x2 = Convert.ToDouble(textBoxTesk3R2X2.Text);
-                B.y2 = Convert.ToDouble(textBoxTesk3R2Y2.Text);
-                var answer = AreRectCross(A,B) ? "Да" : "Нет";
+                A.lx = Convert.ToDouble(textBoxTesk3R1X1.Text);
+                A.ly = Convert.ToDouble(textBoxTesk3R1Y1.Text);
+                A.rx = Convert.ToDouble(textBoxTesk3R1X2.Text);
+                A.ry = Convert.ToDouble(textBoxTesk3R1Y2.Text);
+                B.lx = Convert.ToDouble(textBoxTesk3R2X1.Text);
+                B.ly = Convert.ToDouble(textBoxTesk3R2Y1.Text);
+                B.rx = Convert.ToDouble(textBoxTesk3R2X2.Text);
+                B.ry = Convert.ToDouble(textBoxTesk3R2Y2.Text);
+
+                if (A.lx > A.rx || A.ly > A.ry 
+                    || B.lx > B.rx || B.ly > B.ry) 
+                    throw new Exception("");
+
+                    var answer = AreRectCross(A,B) ? "Да" : "Нет";
                 textBoxTask3Answer.Text = answer;
             }
             catch
