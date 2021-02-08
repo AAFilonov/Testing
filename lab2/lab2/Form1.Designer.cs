@@ -40,22 +40,27 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(80, 12);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            100000,
-            0,
+            -1,
+            2147483647,
             0,
             0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            100000,
-            0,
+            -1,
+            2147483647,
             0,
             -2147483648});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(215, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(139, 20);
             this.numericUpDown1.TabIndex = 0;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(220, 92);
+            this.button1.Location = new System.Drawing.Point(144, 229);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -84,16 +89,17 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(79, 43);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(216, 20);
+            this.textBox1.Size = new System.Drawing.Size(140, 180);
             this.textBox1.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(307, 127);
+            this.ClientSize = new System.Drawing.Size(231, 264);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
