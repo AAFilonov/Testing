@@ -10,7 +10,11 @@ namespace lab3_console
 
         private static bool IsYearVis(int year)
         {
-            return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+            if (year % 4 == 0 && year % 100 != 0)
+                return true;
+            if (year % 4 == 0 && year % 400 == 0)
+                return true;
+            return false;
         }
         //Task 2
         private static double f(double x)
@@ -58,40 +62,74 @@ namespace lab3_console
         }
         private static Rectangle AreRectCross(Rect A, Rect B)
         {
-            var rA = A.GetRectangle();
-            var rB = B.GetRectangle();
-            var rS = Rectangle.Intersect(rA, rB);
+            //var rA = A.GetRectangle();
+            //var rB = B.GetRectangle();
+            //var rS = Rectangle.Intersect(rA, rB);
 
-            return rS;
+
+            Rectangle r1 = A.GetRectangle();
+            Rectangle r2 = B.GetRectangle();
+            Rectangle intersectionRect = new Rectangle();
+
+            int leftX = Math.Max(r1.X, r2.X);
+            int rightX = Math.Min(r1.X + r1.Width, r2.X + r2.Width);
+            int topY = Math.Max(r1.Y, r2.Y);
+            int bottomY = Math.Min(r1.Y + r1.Height, r2.Y + r2.Height);
+
+            if (leftX <= rightX && topY <= bottomY)
+            {
+                intersectionRect = new Rectangle(leftX, topY, rightX - leftX, bottomY - topY);
+            }
+            else
+            {
+                // Rectangles do not overlap, or overlap has an area of zero (edge/corner overlap)
+            }
+
+
+            return intersectionRect;
         }
 
 
         static void Main()
         {
-            int op;
+            StreamReader sr = null;
+            try
+            {
+                 sr = new StreamReader("Input.txt");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+                return;
+            }
+
+            int op=0;
+
             string answer = "";
-            StreamReader sr = new StreamReader("Input.txt");
             var test_function = Convert.ToInt32(sr.ReadLine());
             while (!sr.EndOfStream)
             {
                 List<string> args = new List<string>();
                 var line = sr.ReadLine();
-                if (line[0] == '#') continue;
+                if (line[0] == '#') { 
+                    op = Convert.ToInt32(line[1]) - 48;
+                    Console.WriteLine("Task"+op.ToString()+" testcases:");
+                    continue; }
                 var args_str = line.Split((' '));
-                op = Convert.ToInt32(args_str[0]);
+               
                 if (test_function != 0 && op != test_function) continue;
                 try
                 {
                     switch (op)
                     {
                         case 1:
-                            var year = Convert.ToInt32(args_str[1]);
+                            var year = Convert.ToInt32(args_str[0]);
                             answer = IsYearVis(year) ? "Yes" : "No";                          
                             break;
                         case 2:
-                            var a = Convert.ToDouble(args_str[1]);
-                            var b = Convert.ToDouble(args_str[2]);
-                            var eps = Convert.ToDouble(args_str[3]);
+                            var a = Convert.ToDouble(args_str[0]);
+                            var b = Convert.ToDouble(args_str[1]);
+                            var eps = Convert.ToDouble(args_str[2]);
 
 
                             var root = Binary_Search(a, b, eps);
@@ -100,31 +138,39 @@ namespace lab3_console
                             break;
                         case 3:
                             var A = new Rect(
+                                 Convert.ToInt32(args_str[0]),
                                  Convert.ToInt32(args_str[1]),
                                  Convert.ToInt32(args_str[2]),
-                                 Convert.ToInt32(args_str[3]),
-                                 Convert.ToInt32(args_str[4])
+                                 Convert.ToInt32(args_str[3])
+                                
                                 );
                             var B = new Rect(
+                                 Convert.ToInt32(args_str[4]),
                                   Convert.ToInt32(args_str[5]),
                                   Convert.ToInt32(args_str[6]),
-                                  Convert.ToInt32(args_str[7]),
-                                  Convert.ToInt32(args_str[8])
+                                  Convert.ToInt32(args_str[7])
+                                
                                  );
 
                             var res = AreRectCross(A, B);
                             if (res == new Rectangle()) answer = "Not Cross";
                             else answer = res.ToString();
                             break;
+                        default:
+                            throw new Exception("AAA");
                     }
                     Console.WriteLine("[" + line + "]: " + answer);
 
 
 
                 }
-                catch (Exception e)
+                catch (FormatException e)
                 {
-                    Console.WriteLine("Exception: " + e.Message);
+                    Console.WriteLine("Error: " + e.Message);
+                }
+                  catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e.Message);
                 }
 
                
@@ -133,5 +179,7 @@ namespace lab3_console
             Console.ReadLine();
 
         }
+
+       
     }
 }

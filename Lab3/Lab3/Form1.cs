@@ -21,24 +21,28 @@ namespace Lab3
         //Task 1
         private bool IsYearVis(int year)
         {
-            return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+            if (year % 4 == 0 && year % 100 != 0)
+                return true;
+            if (year % 4 == 0 && year % 400 == 0)
+                return true;
+            return false;
         }
         //Task 2
-        private double f(double x)
+        private static double f(double x)
         {
-            return 2*x+1;
+            return x + Math.Sin(x);
         }
-   
-        private double Binary_Search(int a,int b,double accuracy= 1e-9)
+
+        private static double Binary_Search(double l, double r, double eps = 1e-9)
         {
-            double l = a, r = b, m=0, eps = accuracy;
+            double m;
             do
             {
                 m = (l + r) * 0.5;
-                if (m * m < 0) l = m;
+                if (f(m) < 0) l = m;
                 else r = m;
             } while ((r - l) > eps);
-                return m;
+            return m;
         }
 
         // Task 3
@@ -84,7 +88,7 @@ namespace Lab3
             {
                 MessageBox.Show("Значение точности задано некорректно!", "Ошибка");
             }
-           
+
         }
 
         private void buttonTask3_Click(object sender, EventArgs e)
