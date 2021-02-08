@@ -32,13 +32,13 @@ namespace Lab3
         private double Binary_Search(int a,int b,double accuracy= 1e-9)
         {
             double l = a, r = b, m=0, eps = accuracy;
-            while ((r - l) > eps)
+            do
             {
                 m = (l + r) * 0.5;
                 if (m * m < 0) l = m;
-                    else r = m;
-            }
-            return m;
+                else r = m;
+            } while ((r - l) > eps);
+                return m;
         }
 
         // Task 3
