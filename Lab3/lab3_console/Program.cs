@@ -62,7 +62,7 @@ namespace lab3_console
                 return rectangle;
             }
         }
-        private static Rectangle AreRectCross(Rect A, Rect B)
+        private static Rectangle? AreRectCross(Rect A, Rect B)
         {
             //var rA = A.GetRectangle();
             //var rB = B.GetRectangle();
@@ -71,7 +71,7 @@ namespace lab3_console
 
             Rectangle r1 = A.GetRectangle();
             Rectangle r2 = B.GetRectangle();
-            Rectangle intersectionRect = new Rectangle();
+            Rectangle? intersectionRect = null;
 
             int leftX = Math.Max(r1.X, r2.X);
             int rightX = Math.Min(r1.X + r1.Width, r2.X + r2.Width);
@@ -154,8 +154,8 @@ namespace lab3_console
                                 
                                  );
 
-                            var res = AreRectCross(A, B);
-                            if (res == new Rectangle()) 
+                            Rectangle? res = AreRectCross(A, B);
+                            if (res == null) 
                                 answer = "Not Cross";
                             else 
                                 answer = res.ToString();
