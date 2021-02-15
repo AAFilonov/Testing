@@ -73,12 +73,12 @@ namespace lab3_console
 
             int leftX = Math.Max(r1.X, r2.X);
             int rightX = Math.Min(r1.X + r1.Width, r2.X + r2.Width);
-            int topY = Math.Max(r1.Y, r2.Y);
-            int bottomY = Math.Min(r1.Y + r1.Height, r2.Y + r2.Height);
+            int topY = Math.Min(r1.Y, r2.Y);
+            int bottomY = Math.Max(r1.Y - r1.Height, r2.Y - r2.Height);
 
-            if (leftX <= rightX && topY <= bottomY)
+            if (leftX <= rightX && topY >= bottomY)
             {
-                intersectionRect = new Rectangle(leftX, topY, rightX - leftX, bottomY - topY);
+                intersectionRect = new Rectangle(leftX, topY, rightX - leftX, topY -bottomY  );
             }
             else
             {
@@ -104,7 +104,7 @@ namespace lab3_console
             }
 
             int op=0;
-
+            
             string answer = "";
             var test_function = Convert.ToInt32(sr.ReadLine());
             while (!sr.EndOfStream)
@@ -113,7 +113,7 @@ namespace lab3_console
                 var line = sr.ReadLine();
                 if (line[0] == '#') { 
                     op = Convert.ToInt32(line[1]) - 48;
-                    Console.WriteLine("Task"+op.ToString()+" testcases:");
+                    Console.WriteLine("Task"+op.ToString()+":");
                     continue; }
                 var args_str = line.Split((' '));
                
@@ -127,13 +127,15 @@ namespace lab3_console
                             answer = IsYearVis(year) ? "Yes" : "No";                          
                             break;
                         case 2:
+                           
                             var a = Convert.ToDouble(args_str[0]);
                             var b = Convert.ToDouble(args_str[1]);
                             var eps = Convert.ToDouble(args_str[2]);
 
-
+                            var acc = eps.ToString().Length;
                             var root = Binary_Search(a, b, eps);
-                            answer = String.Format("{0:f15}", root);
+                            var format = "{0:f" + acc.ToString() + "}";
+                            answer = String.Format(format, root);
 
                             break;
                         case 3:
