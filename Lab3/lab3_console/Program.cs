@@ -28,8 +28,10 @@ namespace lab3_console
             do
             {
                 m = (l + r) * 0.5;
-                if (f(m) < 0) l = m;
-                else r = m;
+                if (f(m) < 0)
+                    l = m;
+                else 
+                        r = m;
             } while ((r - l) > eps);
             return m;
         }
@@ -131,10 +133,8 @@ namespace lab3_console
                             var a = Convert.ToDouble(args_str[0]);
                             var b = Convert.ToDouble(args_str[1]);
                             var eps = Convert.ToDouble(args_str[2]);
-
-                            var acc = eps.ToString().Length;
                             var root = Binary_Search(a, b, eps);
-                            var format = "{0:f" + acc.ToString() + "}";
+                            var format = "{0:f15}";
                             answer = String.Format(format, root);
 
                             break;
@@ -155,8 +155,10 @@ namespace lab3_console
                                  );
 
                             var res = AreRectCross(A, B);
-                            if (res == new Rectangle()) answer = "Not Cross";
-                            else answer = res.ToString();
+                            if (res == new Rectangle()) 
+                                answer = "Not Cross";
+                            else 
+                                answer = res.ToString();
                             break;
                         default:
                             throw new Exception("AAA");
