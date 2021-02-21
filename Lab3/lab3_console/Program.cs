@@ -26,8 +26,13 @@ namespace lab3_console
         {
             if (r <= l)
                 throw new Exception("Правая граница интервала должна быть больше левой");
+
             if((r - l) <= eps) 
                throw new Exception("Ширина интервала должна быть строго больше точности");
+
+            if (eps <=0)
+                throw new Exception("Точность должна быть положительным значением");
+
             if (f(r) * f(l) > 0)
             {
                 throw new Exception("Интервал не содержит корней монотонной функции");
@@ -149,7 +154,10 @@ namespace lab3_console
                             var b = Convert.ToDouble(args_str[1]);
                             var eps = Convert.ToDouble(args_str[2]);
                             var root = Binary_Search(a, b, eps);
-                            var format = "{0:f15}";
+
+                            int tmp = Convert.ToInt32(  Math.Round( 1 / eps));
+                            
+                            var format = "{0:f"+(tmp.ToString()).Length.ToString()+"}";
                             answer = String.Format(format, root);
 
                             break;
