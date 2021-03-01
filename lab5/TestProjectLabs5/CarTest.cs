@@ -89,7 +89,7 @@ namespace TestProjectLabs5
         ///Тест для Cost
         ///</summary>
         [TestMethod]
-        public void CostPTest()
+        public void CostTest()
         {
             var target = new Car();
             const decimal expected = 1000M;
