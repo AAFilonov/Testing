@@ -60,9 +60,9 @@
     <Compile Include="RentTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Labs5\Labs5.csproj">
+    <ProjectReference Include="..\Labs5\RentServiceLib.csproj">
       <Project>{691F2959-B074-4322-824B-F89080B8D7E4}</Project>
-      <Name>Labs5</Name>
+      <Name>RentServiceLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

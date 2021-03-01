@@ -57,7 +57,7 @@ namespace Labs5
         {
             bool flag = false;
             var now = DateTime.Now;
-            var rent = _rents.FirstOrDefault(s => s.Client == client && s.DateReturn < now);
+            var rent = _rents.FirstOrDefault(s => s.Client == client && s.DateReturn >= now);
             if (rent != null)
             {
                 _rents.Remove(rent);
@@ -78,7 +78,7 @@ namespace Labs5
         {
             var flag = false;
             var now = DateTime.Now;
-            var t = _rents.FirstOrDefault(s => s.Car == car && s.DateReturn < now);
+            var t = _rents.FirstOrDefault(s => s.Car == car && s.DateReturn >= now);
             if (t != null) flag = true;
             return flag;
         }

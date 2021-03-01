@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labs5", "Labs5\Labs5.csproj", "{691F2959-B074-4322-824B-F89080B8D7E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentServiceLib", "Labs5\RentServiceLib.csproj", "{691F2959-B074-4322-824B-F89080B8D7E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectLabs5", "TestProjectLabs5\TestProjectLabs5.csproj", "{2D318FE0-4F5E-4D4B-98EC-429958A2EA0C}"
 EndProject
