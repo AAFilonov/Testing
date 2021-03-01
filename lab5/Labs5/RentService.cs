@@ -82,7 +82,7 @@ namespace Labs5
             if (t != null) flag = true;
             return flag;
         }
-       public List<Client> GetRentsForCar(Car car)
+       public List<Client> GetclientsForCar(Car car)
         {
             var clients = new List<Client>();
             clients.AddRange(_rents.Where(s => s.Car == car).Select(s => s.Client).Distinct().ToList());

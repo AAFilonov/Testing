@@ -79,74 +79,82 @@ namespace TestProjectLabs5
 
 
             target.StartRentCar(client2, car1, endDate);
-            var actual = target.GetRentsForCar(car1);
+            var actual = target.GetclientsForCar(car1);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(client2, actual[0]);
         }
-        /*
-        /// <summary>
-        ///Тест для GetFreeRooms
-        ///</summary>
-        [TestMethod]
-        public void GetFreeRoomsTest()
-        {
-            var target = new Labs5.RentService();
-            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Passport = "Паспортные данные1" };
-            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Passport = "Паспортные данные2" };
-            target.Clients.Add(client1);
-            target.Clients.Add(client2);
-            var room1 = new Car { Category = "Эконом", CostPerDay = 1000, Name = "101", PlaceCount = 4 };
-            var room2 = new Car { Category = "Бизнес", CostPerDay = 2500, Name = "106", PlaceCount = 2 };
-            target.Rooms.Add(room1);
-            target.Rooms.Add(room2);
-            var endDate = DateTime.Now.AddDays(2);
-            target.Settle(client2, room1, endDate);
-            var actual = target.GetFreeRooms();
-            Assert.AreEqual(1, actual.Count);
-        }
 
         /// <summary>
-        ///Тест для MoveOut
+        ///Тест для isCarRentedNow
         ///</summary>
         [TestMethod]
-        public void MoveOutTest()
+        public void isCarRentedTest()
         {
             var target = new Labs5.RentService();
-            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Passport = "Паспортные данные1" };
-            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Passport = "Паспортные данные2" };
+            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Phone = "79201234567", Adress = "Адрес1" };
+            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Phone = "79201234568", Adress = "Адрес2" };
             target.Clients.Add(client1);
             target.Clients.Add(client2);
-            var room1 = new Car { Category = "Эконом", CostPerDay = 1000, Name = "101", PlaceCount = 4 };
-            var room2 = new Car { Category = "Бизнес", CostPerDay = 2500, Name = "106", PlaceCount = 2 };
-            target.Rooms.Add(room1);
-            target.Rooms.Add(room2);
+            var car1 = new Car { Number = "к964вз", Brand = "Тойота Камри", CostPerDay = 1000, Cost = 10000, Type = "Седан" };
+            var car2 = new Car { Number = "п234ав", Brand = "Хендай Солярис", CostPerDay = 2000, Cost = 20000, Type = "Седан" };
+            target.Cars.Add(car1);
+            target.Cars.Add(car2);
+          
             var endDate = DateTime.Now.AddDays(2);
-            target.Settle(client2, room1, endDate);
-            Assert.AreEqual(1, target.Settlements.Count);
-            target.Settlements[0].EndDate = DateTime.Now.AddMinutes(-1);
-            target.MoveOut(client2);
-            Assert.AreEqual(0, target.Settlements.Count);
+
+
+            target.StartRentCar(client2, car1, endDate);
+            var actual = target.IsCarRentedNow(car1);
+            Assert.AreEqual(true, actual);
+         
         }
 
+
+
+
         /// <summary>
-        ///Тест для Settle
+        ///Тест для StartRentCar
         ///</summary>
         [TestMethod]
-        public void SettleTest()
+        public void StartRentCarTest()
         {
             var target = new Labs5.RentService();
-            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Passport = "Паспортные данные1" };
-            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Passport = "Паспортные данные2" };
+            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Phone = "79201234567", Adress = "Адрес1" };
+            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Phone = "79201234568", Adress = "Адрес2" };
             target.Clients.Add(client1);
             target.Clients.Add(client2);
-            var room1 = new Car { Category = "Эконом", CostPerDay = 1000, Name = "101", PlaceCount = 4 };
-            var room2 = new Car { Category = "Бизнес", CostPerDay = 2500, Name = "106", PlaceCount = 2 };
-            target.Rooms.Add(room1);
-            target.Rooms.Add(room2);
+            var car1 = new Car { Number = "к964вз", Brand = "Тойота Камри", CostPerDay = 1000, Cost = 10000, Type = "Седан" };
+            var car2 = new Car { Number = "п234ав", Brand = "Хендай Солярис", CostPerDay = 2000, Cost = 20000, Type = "Седан" };
+            target.Cars.Add(car1);
+            target.Cars.Add(car2);
+
             var endDate = DateTime.Now.AddDays(2);
-            bool actual = target.Settle(client2, room1, endDate);
+            bool actual = target.StartRentCar(client2, car1, endDate);
             Assert.AreEqual(true, actual);
         }
+
+        /// <summary>
+        ///Тест для EndRentCar
+        ///</summary>
+        [TestMethod]
+        public void EndRentCarTest()
+        {
+            var target = new Labs5.RentService();
+            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Phone = "79201234567", Adress = "Адрес1" };
+            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Phone = "79201234568", Adress = "Адрес2" };
+            target.Clients.Add(client1);
+            target.Clients.Add(client2);
+            var car1 = new Car { Number = "к964вз", Brand = "Тойота Камри", CostPerDay = 1000, Cost = 10000, Type = "Седан" };
+            var car2 = new Car { Number = "п234ав", Brand = "Хендай Солярис", CostPerDay = 2000, Cost = 20000, Type = "Седан" };
+            target.Cars.Add(car1);
+            target.Cars.Add(car2);
+
+            var endDate = DateTime.Now.AddDays(2);
+            target.StartRentCar(client2, car1, endDate);
+            bool actual = target.EndRentCar(client2);
+            Assert.AreEqual(true, actual);
+        }
+
 
         /// <summary>
         ///Тест для Clients
@@ -155,9 +163,8 @@ namespace TestProjectLabs5
         public void ClientsTest()
         {
             var target = new Labs5.RentService();
-            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Passport = "Паспортные данные1" };
-            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Passport = "Паспортные данные2" };
-            target.Clients.Clear();
+            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Phone = "79201234567", Adress = "Адрес1" };
+            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Phone = "79201234568", Adress = "Адрес2" };
             target.Clients.Add(client1);
             target.Clients.Add(client2);
             Assert.AreEqual(2, target.Clients.Count);
@@ -170,12 +177,12 @@ namespace TestProjectLabs5
         public void RoomsTest()
         {
             var target = new Labs5.RentService();
-            var room1 = new Car { Category = "Эконом", CostPerDay = 1000, Name = "101", PlaceCount = 4 };
-            var room2 = new Car { Category = "Бизнес", CostPerDay = 2500, Name = "106", PlaceCount = 2 };
-            target.Rooms.Clear();
-            target.Rooms.Add(room1);
-            target.Rooms.Add(room2);
-            Assert.AreEqual(2, target.Rooms.Count);
+            var car1 = new Car { Number = "к964вз", Brand = "Тойота Камри", CostPerDay = 1000, Cost = 10000, Type = "Седан" };
+            var car2 = new Car { Number = "п234ав", Brand = "Хендай Солярис", CostPerDay = 2000, Cost = 20000, Type = "Седан" };
+            target.Cars.Clear();
+            target.Cars.Add(car1);
+            target.Cars.Add(car2);        
+            Assert.AreEqual(2, target.Cars.Count);
         }
 
         /// <summary>
@@ -185,18 +192,20 @@ namespace TestProjectLabs5
         public void SettlementsTest()
         {
             var target = new Labs5.RentService();
-            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Passport = "Паспортные данные1" };
-            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Passport = "Паспортные данные2" };
+            var client1 = new Client { FirstName = "Имя1", LastName = "Фамилия1", SecondName = "Отчество1", Phone = "79201234567", Adress = "Адрес1" };
+            var client2 = new Client { FirstName = "Имя2", LastName = "Фамилия2", SecondName = "Отчество2", Phone = "79201234568", Adress = "Адрес2" };
             target.Clients.Add(client1);
             target.Clients.Add(client2);
-            var room1 = new Car { Category = "Эконом", CostPerDay = 1000, Name = "101", PlaceCount = 4 };
-            var room2 = new Car { Category = "Бизнес", CostPerDay = 2500, Name = "106", PlaceCount = 2 };
-            target.Rooms.Add(room1);
-            target.Rooms.Add(room2);
-            target.Settlements.Clear();
-            target.Settlements.Add(new Rent { Client = client2, Room = room1, StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(1) });
-            Assert.AreEqual(1, target.Settlements.Count);
+            var car1 = new Car { Number = "к964вз", Brand = "Тойота Камри", CostPerDay = 1000, Cost = 10000, Type = "Седан" };
+            var car2 = new Car { Number = "п234ав", Brand = "Хендай Солярис", CostPerDay = 2000, Cost = 20000, Type = "Седан" };
+            target.Cars.Add(car1);
+            target.Cars.Add(car2);
+
+           
+            target.Rents.Clear();
+            target.Rents.Add(new Rent { Client = client2, Car = car1, DateGive = DateTime.Now, DateReturn = DateTime.Now.AddDays(1) });
+            Assert.AreEqual(1, target.Rents.Count);
         }
-        */
+       
     }
 }
