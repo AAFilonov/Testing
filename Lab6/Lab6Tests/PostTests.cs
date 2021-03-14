@@ -11,44 +11,80 @@ namespace Lab6.Tests
     [TestClass()]
     public class PostTests
     {
+
         [TestMethod()]
-        public void CountRatingTCountRatingTest()
+        public void CountRating_ins_emptystring_ret_0()
         {
-            var post = new Post()
-            {
-                Author = "Auth",
-                Date = DateTime.Now,
-                Message = "123abc"
-            };
-
-            var rez = post.CountRating();
-            Assert.AreEqual(2 ,rez);
-
-
-            post.Message = "123";
-            rez = post.CountRating();
-            Assert.AreEqual(0.5, rez );
-
-
-            post.Message = "abc";
-            rez = post.CountRating();
-            Assert.AreEqual(2, rez);
-
+            // arrange
+            var post = new Post();
             post.Message = "";
-            rez = post.CountRating();
-            Assert.AreEqual(0, rez);
+            var expected = 0;
 
+            // act
+            var actual = post.CountRating();
 
-            post.Message = "a a";
-            rez = post.CountRating();
-            Assert.AreEqual(2, rez);
-
-            post.Message = "aa aa";
-            rez = post.CountRating();
-            Assert.AreEqual(3, rez);
+            // assert
+            Assert.AreEqual(expected, actual);
         }
 
-        
+        [TestMethod()]
+        public void CountRating_ins_123abc_ret_2()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "123abc";
+            var expected = 2;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CountRating_ins_123_ret_0_5()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "123";
+            var expected = 0.5;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CountRating_ins_1_1_1_1_ret_0()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "1 1 1 1";
+            var expected = 0;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod()]
+        public void CountRating_ins_a_a_ret_2()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "a a";
+            var expected = 0;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }
