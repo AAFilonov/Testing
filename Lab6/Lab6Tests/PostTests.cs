@@ -86,5 +86,48 @@ namespace Lab6.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void CountRating_ins_numbs_ten_letters_ret_5_5()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "abcdeabcde";
+            var expected = 5.5;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod()]
+        public void CountRating_ins_numbs_1to10_ret_10()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "1 2 3 4 5 6 7 8 9 10";
+            var expected = 5;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CountRating_ins_semicolon_split_1_1_ret_1()
+        {
+            // arrange
+            var post = new Post();
+            post.Message = "1;1";
+            var expected = 1;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace Lab6
         /// <returns>Значение "сложного" параметра "полезности" сообщения</returns>
         private double CountSecondParam()
         {
-            var split = new[] { ' ', ',', ':', '.', '!' };
+            var split = new[] { ' ', ',', ':', '.', '!', ';', };
             double param = Message.Split(split, StringSplitOptions.RemoveEmptyEntries).Count();
             return param;
         }
