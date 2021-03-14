@@ -19,7 +19,7 @@ namespace Lab6
         {
             var p1 = CountFirstParam();
             var p2 = CountSecondParam();
-            var rating = 0.5 * p1 + 0.5 *p2;
+            var rating = 0.7 * p1 + 0.3 *p2;
             return rating;
         }
         /// <summary>

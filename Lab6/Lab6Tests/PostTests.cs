@@ -11,7 +11,7 @@ namespace Lab6.Tests
     [TestClass()]
     public class PostTests
     {
-
+        //не зависят от формулы:
         [TestMethod()]
         public void CountRating_ins_emptystring_ret_0()
         {
@@ -27,6 +27,7 @@ namespace Lab6.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        //зависят от формулы:
         [TestMethod()]
         public void CountRating_ins_123abc_ret_2()
         {
@@ -71,9 +72,11 @@ namespace Lab6.Tests
             // assert
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod()]
         public void CountRating_ins_a_a_ret_2()
         {
+            //количество слов равно количеству букв
             // arrange
             var post = new Post();
             post.Message = "a a";
@@ -86,6 +89,21 @@ namespace Lab6.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod()]
+        public void CountRating_ins_a_a_a_ret_3()
+        {
+            //количество слов равно количеству букв
+            // arrange
+            var post = new Post();
+            post.Message = "a a a";
+            double expected = 3;
+
+            // act
+            var actual = post.CountRating();
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
         [TestMethod()]
         public void CountRating_ins_numbs_ten_letters_ret_5_5()
         {
