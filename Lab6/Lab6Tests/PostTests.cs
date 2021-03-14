@@ -63,7 +63,7 @@ namespace Lab6.Tests
             // arrange
             var post = new Post();
             post.Message = "1 1 1 1";
-            var expected = 0;
+            var expected = 2;
 
             // act
             var actual = post.CountRating();
@@ -77,7 +77,7 @@ namespace Lab6.Tests
             // arrange
             var post = new Post();
             post.Message = "a a";
-            var expected = 0;
+            var expected = 2;
 
             // act
             var actual = post.CountRating();

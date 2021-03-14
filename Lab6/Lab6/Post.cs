@@ -17,7 +17,9 @@ namespace Lab6
         /// <returns>Значение "рейтинга"</returns>
         public double CountRating()
         {
-            var rating = 0.5 * CountFirstParam() + 0.5 * CountSecondParam();
+            var p1 = CountFirstParam();
+            var p2 = CountSecondParam();
+            var rating = 0.5 * p1 + 0.5 *p2;
             return rating;
         }
         /// <summary>
@@ -36,7 +38,7 @@ namespace Lab6
         private double CountSecondParam()
         {
             var split = new[] { ' ', ',', ':', '.', '!' };
-            double param = Message.Split(split, StringSplitOptions.RemoveEmptyEntries).Distinct().Count();
+            double param = Message.Split(split, StringSplitOptions.RemoveEmptyEntries).Count();
             return param;
         }
     }
