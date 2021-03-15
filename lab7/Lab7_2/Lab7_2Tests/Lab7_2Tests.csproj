@@ -195,8 +195,7 @@
   <ItemGroup>
     <Compile Include="StraightTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IntersectionResult.cs" />
-    <Compile Include="Geometry.cs" />
+    <Compile Include="GeometryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

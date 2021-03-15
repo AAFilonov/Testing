@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace Lab7_2Tests
 {
+    //проверки допустимых классов эквивалентности
     [TestClass]
-    public class StraightTests
+    public class StraightTestsValid
     {
-
-        //проверки допустимых классов
-
+        //прямые персекаются
+        //прямые персеются - точка задана в структуре
+        //Прямые пересекаются - точка соотвествует ожиданиям
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedOnAverageNumbers_ReturnIPoint()
         {
@@ -33,25 +34,86 @@ namespace Lab7_2Tests
 
             IntersectionResult expected = new IntersectionResult
             {
-                IPoint = new PointF(2, 2),
-                IsParallel = false,
-                IsSame = false
+                IPoint = new PointF(2, 2)          
+            };
+
+            //act
+            var actual = S1.GetIntersectioWith(S2);
+
+            //assert
+            Assert.AreEqual(expected.IPoint, actual.IPoint);
+
+        }
+
+        //точки задают параельные  - флаг параллельности поднят  
+        //прямые параллельны
+        [TestMethod]
+        public void GetIntersectioWith_parallel_Parallel()
+        {
+
+            //arrange         
+            Straight S1 = new Straight(
+                new PointF(1f, 0f),
+                new PointF(2f, 1f)
+                );
+            Straight S2 = new Straight(
+                    new PointF(1f, 1f),
+                new PointF(2f, 2f)
+
+                );
+
+            IntersectionResult expected = new IntersectionResult
+            {
+                IsParallel = true,
             };
 
             //act
             var actual = S1.GetIntersectioWith(S2);
             //assert
             Assert.AreEqual(expected.IsParallel, actual.IsParallel);
+
+        }
+
+        //точки лежат на 1 прямой - флаг совпадения поднят
+        //прямые совпадают
+        [TestMethod()]
+        public void GetIntersectioWith_same_Same()
+        {
+            //arrange         
+            Straight S1 = new Straight(
+                new PointF(1f, 1f),
+                new PointF(2f, 2f)
+                );
+            Straight S2 = new Straight(
+               new PointF(3f, 3f),
+               new PointF(4f, 4f)
+
+               );
+
+            IntersectionResult expected = new IntersectionResult
+            {
+                IsSame = true
+            };
+
+            //act
+            var actual = S1.GetIntersectioWith(S2);
+            //assert
+
             Assert.AreEqual(expected.IsSame, actual.IsSame);
-            Assert.AreEqual(expected.IPoint, actual.IPoint);
+
 
         }
 
 
-        //числа не ниже границы float
+
+        //входные числа имеютот 1 до 9 целых значащих разрядов
+        //выходные числа имеютот 1 до 9 целых значащих разрядов
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedInsideFloatPresitionOnBigNumbers_ReturnIPoint()
         {
+            //если все введенные разряды обработаны - результат не будет равен  точке 
+            // заданной выражением, в котором разряды сократиись
+
 
             //arrange         
             Straight S1 = new Straight(
@@ -79,10 +141,13 @@ namespace Lab7_2Tests
         }
 
 
-
+        //входные числа имеютот 1 до 9 дробных значащих разрядов
+        //выходные числа имеютот 1 до 9 дробных значащих разрядов       
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedInsideFloatPresitionOnSmallNumbers_ReturnIPoint()
         {
+            //если все введенные разряды обработаны - результат не будет равен  точке 
+            // заданной выражением, в котором разряды сократиись
 
             //arrange         
             Straight S1 = new Straight(
@@ -107,74 +172,162 @@ namespace Lab7_2Tests
             Assert.AreNotEqual(expected.IPoint, actual.IPoint);
 
         }
+    }
 
-        //проверки недопустимых классов
-        // 0 общих точек паралельные
+    //проверки недопустимых классов эквивалентности
+    [TestClass]
+    public class StraightTestsInValid
+    {
+        //прямые персекаются но точки нет
         [TestMethod]
-        public void GetIntersectioWith_parallel_Parallel()
+        public void GetIntersectioWith_GivenValid4Points_NotReturnNoIPoint()
         {
 
             //arrange         
             Straight S1 = new Straight(
-                new PointF(1f, 0f),
-                new PointF(2f, 1f)
+                new PointF(2, 0),
+                new PointF(2, 2)
                 );
             Straight S2 = new Straight(
-                    new PointF(1f, 1f),
-                new PointF(2f, 2f)
+
+                new PointF(0, 2),
+                new PointF(2, 2)
 
                 );
 
             IntersectionResult expected = new IntersectionResult
             {
-                IPoint = null,
-                IsParallel = true,
-                IsSame = false
+                IPoint = new PointF(2, 2)
             };
 
             //act
             var actual = S1.GetIntersectioWith(S2);
+
             //assert
-            Assert.AreEqual(expected.IsParallel, actual.IsParallel);
-            Assert.AreEqual(expected.IsSame, actual.IsSame);
-            Assert.AreEqual(expected.IPoint, actual.IPoint);
+            Assert.AreNotEqual(null, actual.IPoint);
 
         }
-        // 0 общих точек паралельные
-        [TestMethod()]
-        public void GetIntersectioWith_same_Same()
+
+        /*
+        //прямые пересекаются но точка не соотвесвует ожидаемой
+        [TestMethod]
+        public void GetIntersectioWith_GivenValid4PointsStraightsIntersect_ReturnValidIPoint()
         {
+
             //arrange         
             Straight S1 = new Straight(
-                new PointF(1f, 1f),
-                new PointF(2f, 2f)
+                new PointF(2, 0),
+                new PointF(2, 2)
                 );
             Straight S2 = new Straight(
-               new PointF(3f, 3f),
-               new PointF(4f, 4f)
 
-               );
+                new PointF(0, 2),
+                new PointF(2, 2)
+
+                );
 
             IntersectionResult expected = new IntersectionResult
             {
+                IPoint = new PointF(2, 2)
+            };
+
+            //act
+            var actual = S1.GetIntersectioWith(S2);
+
+            //assert
+            Assert.AreEqual(expected.IPoint, actual.IPoint);
+
+        }
+        */
+
+        //произошло более одной ситуации
+        //параллельны и совпадают
+        [TestMethod]
+        public void GetIntersectioWith_4PointsOnStraight_NotSameAndParralel()
+        {
+            //arrange         
+            Straight S1 = new Straight(
+                new PointF(0, 0),
+                new PointF(2, 2)
+                );
+            Straight S2 = new Straight(
+                new PointF(3, 3),
+                new PointF(4, 4)
+
+                );
+            //прямые на одной прямой
+            IntersectionResult expected = new IntersectionResult
+            {
                 IPoint = null,
-                IsParallel = false,
+                IsParallel = true,
                 IsSame = true
             };
 
             //act
             var actual = S1.GetIntersectioWith(S2);
-            //assert
-            Assert.AreEqual(expected.IsParallel, actual.IsParallel);
-            Assert.AreEqual(expected.IsSame, actual.IsSame);
-            Assert.AreEqual(expected.IPoint, actual.IPoint);
 
+            //assert
+            if (expected.IsParallel == actual.IsParallel
+                && expected.IsSame == actual.IsSame)
+               Assert.Fail();         
         }
 
 
 
+        //произошло более одной ситуации
+        //персекаются и параллельны
+        [TestMethod]
+        public void GetIntersectioWith_IntersectedStraight_ReturnNotIpointAndParallel()
+        {
+            //arrange         
+            Straight S1 = new Straight(
+                new PointF(0, 0),
+                new PointF(2, 2)
+                );
+            Straight S2 = new Straight(
+                new PointF(0, 2),
+                new PointF(2, 0)
+                );
+            //прямые пересекаются
+   
+            //act
+            var actual = S1.GetIntersectioWith(S2);
 
-        //входные и выходные числа выше границы float
+            //assert
+            if (actual.IsParallel == true
+                && actual.IPoint!= null)
+                Assert.Fail();
+        }
+
+        //произошло более одной ситуации
+        //персекаются и совпадают
+        [TestMethod]
+        public void GetIntersectioWith_IntersectedStraight_ReturnNotIpointAndSame()
+        {
+            //arrange         
+            Straight S1 = new Straight(
+                new PointF(0, 0),
+                new PointF(2, 2)
+                );
+            Straight S2 = new Straight(
+                new PointF(0, 2),
+                new PointF(2, 0)
+                );
+            //прямые пересекаются
+       
+
+            //act
+            var actual = S1.GetIntersectioWith(S2);
+
+            //assert
+            if (actual.IsSame == true
+               && actual.IPoint != null)
+                Assert.Fail();
+        }
+
+
+        //входные числа имеют более 9 целых значащих разрядов 
+        //выходные числа имеют более 9 целых значащих разрядов 
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedOutsideFloatPresitionOnBigNumbers_ReturnIPoint()
         {
@@ -204,7 +357,8 @@ namespace Lab7_2Tests
 
         }
 
-        //входные и выходные числа ниже границы float
+        //входные числа имеют более 9 дробных значащих разрядов 
+        //выходные числа имеют более 9 дробных значащих разрядов 
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedOutsideFloatPresitionOnSmallNumbers_ReturnIPoint()
         {
