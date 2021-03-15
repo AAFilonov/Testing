@@ -8,10 +8,19 @@ namespace Lab7_2
 {
     public class IntersectionResult
     {
+
         public bool IsSame { get; set; }
         public bool IsParallel { get; set; }
         public PointF? IPoint { get; set; }
-        public IntersectionResult(bool same =false, bool parallel = false, PointF? point =null)
+
+        public IntersectionResult()
+        {
+            IsSame = false;
+            IsParallel = false;
+            IPoint = null;
+        }
+
+        public IntersectionResult(bool same = false, bool parallel = false, PointF? point = null)
         {
             IsSame = same;
             IsParallel = parallel;

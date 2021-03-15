@@ -7,9 +7,9 @@ using System.Drawing;
 
 namespace Lab7_2
 {
-    class Geometry
+    public class Geometry
     {
-        public static void IntersectionCheck
+        public static IntersectionResult IntersectionCheck
             (
               PointF p1
              ,PointF p2
@@ -17,8 +17,11 @@ namespace Lab7_2
              ,PointF p4
             )
         {
+            //тут могли быть преобразования строки в набор точек
             var  S1 = new Straight(p1, p2);
             var  S2 = new Straight(p3, p4);
+
+            return S1.GetIntersectioWith(S2);
         }
     }
 }
