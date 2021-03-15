@@ -10,37 +10,66 @@ namespace Lab7_2Tests
         
         //проверяет корректность преобразования строки в точки + корректность обработки количества точек
         [TestMethod]
-        public void IntersectionCheck_4point_notNull()
+        public void IntersectionCheck_Given4point_ReturnsNoException()
         {
             //arrange
             var Geometry = new Geometry();
-            PointF S1P1 = new PointF(0f, 0f);
-            PointF S1P2 = new PointF(1f, 1f);
-            PointF S2P1 = new PointF(2f, 2f);
-            PointF S2P2 = new PointF(3f, 2f);
+            var arg = "0.0 0.0 "+ "1.0 1.0 " + "1.0 1.0 "+"0.0 1.0";
             IntersectionResult expected = new IntersectionResult();
 
             //act
-            var actual = Geometry.IntersectionCheck(S1P1, S1P2, S2P1, S2P2);
+            var actual = Geometry.IntersectionCheckStr(arg);
             //assert
-            Assert.AreNotEqual(null, actual.IPoint);
+            Assert.AreEqual(null, actual.GetError());
 
         }
 
         //3 точки 
         [TestMethod]
-        public void IntersectionCheck_3point_Null()
+        public void IntersectionCheck_Given3point_ReturnsException()
         {
 
-           // throw new  NotImplementedException();
+            //arrange
+            var Geometry = new Geometry();
+            var arg = "0.0 0.0 " + "1.0 1.0 " + "0.0 1.0";
+            IntersectionResult expected = new IntersectionResult();
+
+            //act
+            var actual = Geometry.IntersectionCheckStr(arg);
+            //assert
+            Assert.AreNotEqual(null, actual.GetError());
 
         }
         //5 точек 
         [TestMethod]
-        public void IntersectionCheck_5point_Null()
+        public void IntersectionCheck_Given5point_ReturnsException()
         {
 
-          //  throw new NotImplementedException();
+            //arrange
+            var Geometry = new Geometry();
+            var arg = "0.0 0.0 " + "1.0 1.0 " + "1.0 1.0 " + "0.0 1.0 " + "0.0 1.0";
+            IntersectionResult expected = new IntersectionResult();
+
+            //act
+            var actual = Geometry.IntersectionCheckStr(arg);
+            //assert
+            Assert.AreNotEqual(null, actual.GetError());
+
+        }
+        //0 точек 
+        [TestMethod]
+        public void IntersectionCheck_GivenEmtyString_ReturnsException()
+        {
+
+            //arrange
+            var Geometry = new Geometry();
+            var arg = "";
+            IntersectionResult expected = new IntersectionResult();
+
+            //act
+            var actual = Geometry.IntersectionCheckStr(arg);
+            //assert
+            Assert.AreNotEqual(null, actual.GetError());
 
         }
     }

@@ -8,6 +8,17 @@ namespace Lab7_2
 {
     public class IntersectionResult
     {
+        private Exception error;
+
+        public Exception GetError()
+        {
+            return error;
+        }
+
+        public void SetError(Exception value)
+        {
+            error = value;
+        }
 
         public bool IsSame { get; set; }
         public bool IsParallel { get; set; }
@@ -15,13 +26,15 @@ namespace Lab7_2
 
         public IntersectionResult()
         {
+            SetError(null);
             IsSame = false;
             IsParallel = false;
             IPoint = null;
         }
 
-        public IntersectionResult(bool same = false, bool parallel = false, PointF? point = null)
+        public IntersectionResult(bool same = false, bool parallel = false, PointF? point = null, Exception error = null)
         {
+            SetError(error);
             IsSame = same;
             IsParallel = parallel;
             IPoint = point;
