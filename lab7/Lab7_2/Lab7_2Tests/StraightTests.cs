@@ -353,12 +353,13 @@ namespace Lab7_2Tests
             //act
             var actual = S1.GetIntersectioWith(S2);
             //assert
-            Assert.AreNotEqual(expected.IPoint, actual.IPoint);
+            Assert.AreEqual(expected.IPoint, actual.IPoint);
 
         }
 
         //входные числа имеют более 9 дробных значащих разрядов 
         //выходные числа имеют более 9 дробных значащих разрядов 
+        //проверяем что точность теряется при выходе за границы точности  float
         [TestMethod]
         public void GetIntersectioWith_Given4PointsThatCrossedOutsideFloatPresitionOnSmallNumbers_ReturnIPoint()
         {
@@ -384,7 +385,7 @@ namespace Lab7_2Tests
             //act
             var actual = S1.GetIntersectioWith(S2);
             //assert
-            Assert.AreNotEqual(expected.IPoint, actual.IPoint);
+            Assert.AreEqual(expected.IPoint, actual.IPoint);
 
         }
 
