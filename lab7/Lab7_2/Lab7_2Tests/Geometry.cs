@@ -7,6 +7,7 @@ namespace Lab7_2Tests
     [TestClass]
     public class GeometryTests
     {
+        
         //проверяет корректность преобразования строки в точки + корректность обработки количества точек
         [TestMethod]
         public void IntersectionCheck_4point_notNull()
