@@ -32,7 +32,7 @@ namespace Lab7_2
             List<float> values = new List<float>();
             try
             {
-                var Numbers = input.Split(new[] { ' ' });
+                var Numbers = input.Split(new[] { ';' });
 
                 foreach (var i in Numbers)
                 {
