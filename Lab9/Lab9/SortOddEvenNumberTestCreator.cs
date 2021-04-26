@@ -59,6 +59,7 @@ namespace Lab9
             var pathDirs = CurrentDirectory + "\\" + outDirectory;
             var pathFile = pathDirs + "\\" + filename;
 
+            Console.WriteLine("Data saved to "+ pathFile);
             System.IO.Directory.CreateDirectory(pathDirs);
             var File = System.IO.File.Create(pathFile);
             var Writer = new System.IO.StreamWriter(File);
