@@ -6,7 +6,7 @@ namespace Lab9
     {
         static void Main(string[] args)
         {
-            SortOddEvenNumberTestCreator.Generate(21,20);
+            SortOddEvenNumberTestCreator.Generate(21,5);
         }
     }
 }

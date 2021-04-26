@@ -13,7 +13,7 @@ namespace Lab9
         static string ExpBuffer;
         static int AmountOfVals;
         static string CurrentDirectory;
-        static string outDirectory = "OutFiles";
+        static string OutDirectory = "OutFiles";
         static  TestSequenceCreator seqCreator = new TestSequenceCreator();
 
         public static void Generate(int amountOfVals,int amountOfSequences)
@@ -21,15 +21,17 @@ namespace Lab9
             AmountOfVals = amountOfVals;
             CreateData(amountOfSequences);
          
-            outToFiles(InsBuffer, ExpBuffer);
+        
         }
 
         private static void CreateData(int count)
         {
             for (int i=0; i < count; i++){
                 CreateNewSequence();
-                InsBuffer += convertSequenseToString(seqCreator.valsIns) +"\r\n";
-                ExpBuffer += convertSequenseToString(seqCreator.valsExp) + "\r\n";
+                InsBuffer = convertSequenseToString(seqCreator.valsIns) +"\r\n";
+                ExpBuffer = convertSequenseToString(seqCreator.valsExp) + "\r\n";
+
+                outToFiles(InsBuffer, ExpBuffer,"Test"+i.ToString());
             }
 
         }
@@ -47,16 +49,16 @@ namespace Lab9
                 Out += val.ToString() + " ";
             return Out;
         }
-        private static void  outToFiles(string InsData,string ExpData)
+        private static void  outToFiles(string InsData,string ExpData,string testname)
         {
             CurrentDirectory = Directory.GetCurrentDirectory();
-            writeDataTofile("Inserted.txt", InsData);
-            writeDataTofile("Expected.txt", ExpData);
+            writeDataTofile("Inserted"+ testname + ".txt", InsData,  testname);
+            writeDataTofile("Expected"+ testname + ".txt", ExpData,  testname);
 
         }
-        private static void  writeDataTofile(string filename,string data)
+        private static void  writeDataTofile(string filename,string data, string testname)
         {
-            var pathDirs = CurrentDirectory + "\\" + outDirectory;
+            var pathDirs = CurrentDirectory + "\\" + OutDirectory+"\\"+ testname;
             var pathFile = pathDirs + "\\" + filename;
 
             Console.WriteLine("Data saved to "+ pathFile);
