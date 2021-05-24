@@ -30,39 +30,75 @@ namespace RentService
 
         private void buttonFind_Click(object sender, EventArgs e)
         {
+            try
+            {
 
 
-            string searchName = textBoxFindNum.Text;
-            var car = _entities.Car.FirstOrDefault(b => b.Number.Contains(searchName));
+                string searchName = textBoxFindNum.Text;
+                var car = _entities.Car.FirstOrDefault(b => b.Number.Contains(searchName));
+                if (car == null)
+                {
+                    MessageBox.Show("Автомобиль с таким номером не найден");
 
-            textBoxNumberFind.Text = car.Number;
-            textBoxBrandFind.Text = car.Brand;
-            numericUpDownCostFind.Value = car.Cost;
-            numericUpDownCostPerDayFind.Value = car.CostPerDay;
-            textBoxType.Text = car.Type;
+                }
+                else
+                {
+
+
+                    textBoxNumberFind.Text = car.Number;
+                    textBoxBrandFind.Text = car.Brand;
+                    numericUpDownCostFind.Value = car.Cost;
+                    numericUpDownCostPerDayFind.Value = car.CostPerDay;
+                    textBoxType.Text = car.Type;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Во время поиска произошла ошибка ({0})", ex.Message));
+
+            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            string number = textBoxNumberAdd.Text;
-            string brand = textBoxBrandAdd.Text;
-            int cost = (int)numericUpDownCostAdd.Value;
-            int costPerDay = (int)numericUpDownCostPerDayAdd.Value;
-            string type = comboBoxTypeAdd.Text;
-
-            _entities.Car.Add(new Car()
+            try
             {
-                Number = number,
-                Brand = brand,
-                Cost = cost,
-                CostPerDay = costPerDay,
-                Type = type
-
-            });
-            _entities.SaveChanges();
 
 
+                string number = textBoxNumberAdd.Text;
+                string brand = textBoxBrandAdd.Text;
+                int cost = (int)numericUpDownCostAdd.Value;
+                int costPerDay = (int)numericUpDownCostPerDayAdd.Value;
+                string type = comboBoxTypeAdd.Text;
 
+                if (number == "" || brand == "" || type == "")
+                {
+                    MessageBox.Show("Некоторые поля остались незаполненными. Пожалуйста заполните их ");
+                    return;
+                }
+                if (cost == 0 || costPerDay == 0)
+                {
+                    MessageBox.Show("Нулевые значения стоимости не дозволены. Пожалуйста задайте другие значения");
+                    return;
+                }
+
+                _entities.Car.Add(new Car()
+                {
+                    Number = number,
+                    Brand = brand,
+                    Cost = cost,
+                    CostPerDay = costPerDay,
+                    Type = type
+
+                });
+                _entities.SaveChanges();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Во время добавления произошла ошибка ({0}). Проверьте подключение к БД и корректность введенных данных и повторите попытку", ex.Message));
+            }
         }
     }
 }

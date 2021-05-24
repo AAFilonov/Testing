@@ -218,6 +218,7 @@ namespace RentService
             // textBoxNumberAdd
             // 
             this.textBoxNumberAdd.Location = new System.Drawing.Point(67, 18);
+            this.textBoxNumberAdd.MaxLength = 50;
             this.textBoxNumberAdd.Name = "textBoxNumberAdd";
             this.textBoxNumberAdd.Size = new System.Drawing.Size(175, 20);
             this.textBoxNumberAdd.TabIndex = 1;
@@ -234,6 +235,7 @@ namespace RentService
             // textBoxBrandAdd
             // 
             this.textBoxBrandAdd.Location = new System.Drawing.Point(67, 44);
+            this.textBoxBrandAdd.MaxLength = 50;
             this.textBoxBrandAdd.Name = "textBoxBrandAdd";
             this.textBoxBrandAdd.Size = new System.Drawing.Size(175, 20);
             this.textBoxBrandAdd.TabIndex = 3;
@@ -291,6 +293,7 @@ namespace RentService
             // 
             // comboBoxTypeAdd
             // 
+            this.comboBoxTypeAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTypeAdd.FormattingEnabled = true;
             this.comboBoxTypeAdd.Location = new System.Drawing.Point(82, 125);
             this.comboBoxTypeAdd.Name = "comboBoxTypeAdd";
