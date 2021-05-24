@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentServiceLib", "Labs5\Ren
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectLabs5", "TestProjectLabs5\TestProjectLabs5.csproj", "{2D318FE0-4F5E-4D4B-98EC-429958A2EA0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentService", "RentService\RentService.csproj", "{1C59B339-A223-4B8E-A288-669036D0315E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,14 @@ Global
 		{2D318FE0-4F5E-4D4B-98EC-429958A2EA0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D318FE0-4F5E-4D4B-98EC-429958A2EA0C}.Release|x86.ActiveCfg = Release|Any CPU
 		{2D318FE0-4F5E-4D4B-98EC-429958A2EA0C}.Release|x86.Build.0 = Release|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C59B339-A223-4B8E-A288-669036D0315E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
