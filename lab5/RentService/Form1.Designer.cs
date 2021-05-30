@@ -30,6 +30,7 @@ namespace RentService
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxType = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDownCostPerDayFind = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownCostFind = new System.Windows.Forms.NumericUpDown();
@@ -55,7 +56,7 @@ namespace RentService
             this.comboBoxTypeAdd = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.textBoxType = new System.Windows.Forms.TextBox();
+            this.labelSucess = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostPerDayFind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostFind)).BeginInit();
@@ -81,6 +82,14 @@ namespace RentService
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(267, 187);
             this.panel2.TabIndex = 10;
+            // 
+            // textBoxType
+            // 
+            this.textBoxType.Location = new System.Drawing.Point(67, 128);
+            this.textBoxType.Name = "textBoxType";
+            this.textBoxType.ReadOnly = true;
+            this.textBoxType.Size = new System.Drawing.Size(175, 20);
+            this.textBoxType.TabIndex = 9;
             // 
             // label6
             // 
@@ -302,6 +311,7 @@ namespace RentService
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.labelSucess);
             this.panel1.Controls.Add(this.buttonAdd);
             this.panel1.Controls.Add(this.comboBoxTypeAdd);
             this.panel1.Controls.Add(this.label5);
@@ -328,13 +338,13 @@ namespace RentService
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // textBoxType
+            // labelSucess
             // 
-            this.textBoxType.Location = new System.Drawing.Point(67, 128);
-            this.textBoxType.Name = "textBoxType";
-            this.textBoxType.ReadOnly = true;
-            this.textBoxType.Size = new System.Drawing.Size(175, 20);
-            this.textBoxType.TabIndex = 9;
+            this.labelSucess.AutoSize = true;
+            this.labelSucess.Location = new System.Drawing.Point(23, 179);
+            this.labelSucess.Name = "labelSucess";
+            this.labelSucess.Size = new System.Drawing.Size(0, 13);
+            this.labelSucess.TabIndex = 11;
             // 
             // Form1
             // 
@@ -388,6 +398,7 @@ namespace RentService
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.TextBox textBoxType;
+        private System.Windows.Forms.Label labelSucess;
     }
 }
 

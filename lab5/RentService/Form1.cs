@@ -92,7 +92,7 @@ namespace RentService
 
                 });
                 _entities.SaveChanges();
-
+                labelSucess.Text = "Succes!";
 
             }
             catch (Exception ex)
