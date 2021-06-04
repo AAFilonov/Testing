@@ -13,16 +13,13 @@ namespace RentService
 {
     public partial class Form1 : Form
     {
-        TestingBaseEntities1 _entities = new TestingBaseEntities1();
-        List<String> _types = new List<String>();
+        public static TestingBaseEntities1 _entities = new TestingBaseEntities1();
+        Catalog catalog = new Catalog();
         public Form1()
         {
-            InitializeComponent();
-            _types.Add("Легковая");
-            _types.Add("Грузовая");
-            _types.Add("Мотоцикл");
+            InitializeComponent();        
 
-            comboBoxTypeAdd.Items.AddRange(_types.ToArray());
+            comboBoxTypeAdd.Items.AddRange(catalog.getTypes());
 
         }
 
@@ -35,7 +32,7 @@ namespace RentService
 
 
                 string searchName = textBoxFindNum.Text;
-                var car = _entities.Car.FirstOrDefault(b => b.Number.Contains(searchName));
+                var car = Search.doSearch(searchName);
                 if (car == null)
                 {
                     MessageBox.Show("Автомобиль с таким номером не найден");
@@ -82,7 +79,7 @@ namespace RentService
                     return;
                 }
 
-                _entities.Car.Add(new Car()
+                Add.doAdd(new Car()
                 {
                     Number = number,
                     Brand = brand,
@@ -91,7 +88,7 @@ namespace RentService
                     Type = type
 
                 });
-                _entities.SaveChanges();
+               
                 labelSucess.Text = "Succes!";
 
             }
